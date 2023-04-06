@@ -1,6 +1,7 @@
 """CRUD operation"""
 
 from model import db, User, Book, Author, BookAuthor, UserBooks, connect_to_db
+from sqlalchemy import func
 
 def create_user(email, username, password):
     """Create and return a user."""
@@ -41,6 +42,12 @@ def get_users():
 
     return User.query.all()
 
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+
+
 def get_books():
     """Return all books."""
 
@@ -60,6 +67,26 @@ def get_author_by_name(name):
     """Return a movie by primary key."""
 
     return Author.query.filter(Author.name==name).first()
+
+def get_top_books():
+    """Return the top 10 books"""
+    # Query used:
+    # SELECT title, RANK() OVER(ORDER BY gr_avg_rating DESC, num_of_ratings DESC, num_of_reviews DESC) as RANK
+    # FROM books
+    # LIMIT 10;
+
+    top_books = db.session.query(
+    Book,
+    func.rank().over(
+        order_by=(Book.gr_avg_rating.desc(), Book.num_of_ratings.desc())
+    ).label('book_rank')).limit(10).all()
+
+    return top_books
+
+
+
+
+
 
 if __name__ == "__main__":
     from server import app
