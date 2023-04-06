@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title%}{{ book.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ book.title}}</h1>
+
+<img src="https://covers.openlibrary.org/b/isbn/{{book.isbn13}}-L.jpg" />
+<p>
+    {{ book.gr_avg_rating }}
+    {{ book.num_of_ratings }}
+    {{ book.num_of_reviews }}
+</p>
+<p>
+    {% if session.get("user_id" ) %}
+    <button class="Add-Fav_Book"> Add book To My List </button>
+    {% endif %}
+</p>
+
+
+<script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
+<script type="text/javascript">
+GBS_insertPreviewButtonPopup('ISBN:{{ book.isbn13 }}');
+</script>
+<script type="text/javascript" src="/static/addFavBook.js"></script>
+<script type="javascript">
+registerAddBookEvent('{{ book.id }}');
+</script>
+
+{% endblock %}

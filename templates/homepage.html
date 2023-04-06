@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %} Top Read Books Home {% endblock %}
+
+{% block body %}
+    <h1>Welcome to the top reads Homepage!!</h1>
+
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="/books">View All books</a></li>
+        <li><a href="/top_books">View top 10 books</a></li>
+    </ul>
+
+    <h2>Register an account</h2>
+    <form action="/users" method="POST">
+        <p>
+            Username <input type="text" name="username">
+        </p>
+        <p>
+            Email <input type="email" name="email">
+        </p>
+        <p>
+            Password <input type="text" name="password">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+
+    <h2>Already have an account!</h2>
+    <form action="/login" method="POST">
+        <p>
+            Email <input type="email" name="email">
+        </p>
+        <p>
+            Password <input type="text" name="password">
+        </p>
+        
+        <p>
+            <input type="submit" value="Log In">
+        </p>
+
+    </form>
+
+
+{% endblock %}

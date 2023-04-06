@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.email }}'s Page{% endblock %}
+
+{% block body %}
+<h1>{{ user.email }}</h1>
+<ul>
+{% for book in user.books %}
+    <li class=fav_books_>
+        {{ book.title }}:
+        {% if session["user_email"] == user.email %}
+        <button class="edit-movie-rating" id={{ rating.rating_id }}> Edit rating </button>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}
