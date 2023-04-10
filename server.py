@@ -29,7 +29,10 @@ def show_book(book_id):
 
     book = crud.get_book_by_id(book_id)
 
-    return render_template("book_details.html", book=book)
+    user_id = session["user_id"]
+    fav_books = crud.get_user_favbks(user_id)
+
+    return render_template("book_details.html", book=book, favbooks=fav_books)
 
 @app.route("/top_books")
 def top_books():
@@ -86,11 +89,49 @@ def add_book():
 
     user = crud.get_user_by_id(session["user_id"])
 
-    user.books.append(book)
+    user_books = user.books
 
+    if book in user_books:
+        msg = "Book already in your favorites"
+    else:
+        user.books.append(book)
+        db.session.commit()
+        msg = "Success"
+
+    return msg
+
+@app.route("/remove_book")
+def remove_book():
+
+    book_id = request.args.get("book_id")
+
+    book = crud.get_book_by_id(book_id)
+
+    user = crud.get_user_by_id(session["user_id"])
+
+    user_books = user.books
+
+    
+    user.books.remove(book)
     db.session.commit()
+    msg = "Success"
 
-    return "Success"
+    return msg
+
+@app.route("/fav_books")
+def show_user_books():
+
+    user_id = session["user_id"]
+    fav_books = crud.get_user_favbks(user_id)
+
+    return render_template("fav_books.html", books=fav_books)
+
+@app.route("/bar_chart")
+def show_chart():
+
+    return render_template("bar_chart.html")
+
+    
 
 if __name__ == "__main__":
 

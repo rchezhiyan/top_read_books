@@ -7,13 +7,17 @@
 
 <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn13}}-L.jpg" />
 <p>
-    {{ book.gr_avg_rating }}
-    {{ book.num_of_ratings }}
-    {{ book.num_of_reviews }}
+    <p>Rating: {{ book.gr_avg_rating }}</p>
+    <p>No. Of Ratings: {{ book.num_of_ratings }}</p>
+    <p>No. Of Reviews: {{ book.num_of_reviews }}</p>
 </p>
 <p>
-    {% if session.get("user_id" ) %}
-    <button class="Add-Fav_Book"> Add book To My List </button>
+    {% if session.get("user_id" ) and book in favbooks %}
+        <button class="Rem_Fav_Book"> Remove book from MyList </button>
+        <p>{{book.id}}</p>
+    {% elif session.get("user_id" ) %}
+        <button class="Add_Fav_Book"> Add book to MyList </button>
+        <p>{{book.id}}</p>
     {% endif %}
 </p>
 
@@ -22,9 +26,5 @@
 <script type="text/javascript">
 GBS_insertPreviewButtonPopup('ISBN:{{ book.isbn13 }}');
 </script>
-<script type="text/javascript" src="/static/addFavBook.js"></script>
-<script type="javascript">
-registerAddBookEvent('{{ book.id }}');
-</script>
-
+<script type="text/javascript" src="/static/js/addFavBook.js"></script>
 {% endblock %}

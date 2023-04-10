@@ -83,6 +83,16 @@ def get_top_books():
 
     return top_books
 
+def get_user_favbks(user_id):
+
+    # SELECT fav_book_id
+    # FROM user_books
+    # WHERE user_id = user_id;
+
+    user = get_user_by_id(user_id)
+
+    return user.books
+
 
 
 
