@@ -1,0 +1,6 @@
+body {
+    background: #333 url('/static/img/book-open-book.jpg');
+    background-size: cover;
+  
+    color: white;
+  }

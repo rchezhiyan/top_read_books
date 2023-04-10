@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Your Favorite Books{% endblock %}
+
+{% block body %}
+  <h1>Favorite Books</h1>
+
+  <ul>
+    {% for book in books %}
+      <li>
+        <a href="/books/{{ book.id }}">
+          {{ book.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
