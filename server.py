@@ -1,6 +1,6 @@
 """Server for top book to read app"""
 
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, db
 import crud
 
@@ -130,6 +130,16 @@ def show_user_books():
 def show_chart():
 
     return render_template("bar_chart.html")
+
+@app.route('/author_books.json')
+def get_report_data():
+
+    data = crud.authors_books_report()
+
+    result = [{k: item[k] for k in item.keys()} for item in data]
+    print (result)
+    print(jsonify(result))
+    return jsonify(result)
 
     
 

@@ -1,7 +1,7 @@
 """CRUD operation"""
 
 from model import db, User, Book, Author, BookAuthor, UserBooks, connect_to_db
-from sqlalchemy import func
+from sqlalchemy import func, desc
 
 def create_user(email, username, password):
     """Create and return a user."""
@@ -93,8 +93,17 @@ def get_user_favbks(user_id):
 
     return user.books
 
+def authors_books_report():
 
+    # SELECT a.name, count(*) as Books_count
+    # FROM authors a
+    # JOIN book_authors ba ON a.id = ba.author_id
+    # GROUP BY 1
+    # ORDER BY 2;
 
+    data = db.session.query(Author.name,func.count(BookAuthor.book_id).label('bookcount')).join(BookAuthor).group_by('name').order_by(desc('bookcount')).limit(10).all()
+
+    return data
 
 
 

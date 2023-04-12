@@ -20,8 +20,9 @@
         <p>{{book.id}}</p>
     {% endif %}
 </p>
+{% endblock %}
 
-
+{% block js %}
 <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
 <script type="text/javascript">
 GBS_insertPreviewButtonPopup('ISBN:{{ book.isbn13 }}');
