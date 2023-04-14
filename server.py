@@ -29,8 +29,11 @@ def show_book(book_id):
 
     book = crud.get_book_by_id(book_id)
 
-    user_id = session["user_id"]
-    fav_books = crud.get_user_favbks(user_id)
+    user_id = session.get("user_id",None)
+    if user_id:
+        fav_books = crud.get_user_favbks(user_id)
+    else:
+        fav_books = []
 
     return render_template("book_details.html", book=book, favbooks=fav_books)
 
@@ -94,7 +97,8 @@ def handle_logout():
 
     session.clear()
 
-    return 'Success'
+
+    return redirect('/')
 
 
 @app.route("/add_book")
@@ -138,7 +142,14 @@ def remove_book():
 @app.route("/fav_books")
 def show_user_books():
 
-    user_id = session["user_id"]
+    user_id = session.get("user_id",None)
+
+    if user_id is None:
+
+        flash(f"Please login to see the favorite books!")
+
+        return redirect("/login")
+
     fav_books = crud.get_user_favbks(user_id)
 
     return render_template("fav_books.html", books=fav_books)

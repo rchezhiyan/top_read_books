@@ -41,16 +41,3 @@ loginForm.addEventListener('submit', (evt) => {
 
 });
 
-handleLogin.addEventListener('click',() => {
-
-    fetch('/logout')
-        .then((response) => response.text())
-        .then((respText) => {
-            if (respText == 'Success') {
-                handleLogin.innerText = 'Log In';
-                alert('You have Logged Out!');
-            }
-
-        });
-
-});
