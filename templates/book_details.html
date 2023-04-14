@@ -10,6 +10,12 @@
     <p>Rating: {{ book.gr_avg_rating }}</p>
     <p>No. Of Ratings: {{ book.num_of_ratings }}</p>
     <p>No. Of Reviews: {{ book.num_of_reviews }}</p>
+    <p>by
+        {% for author in book.authors[:-1]%}
+        <span><a href="https://en.wikipedia.org/wiki/{{ author.name }}">{{ author.name }}</a> /</span>
+        {% endfor %}
+        <span><a href="https://en.wikipedia.org/wiki/{{ book.authors[-1].name }}">{{ book.authors[-1].name }}</span>
+    </p>
 </p>
 <p>
     {% if session.get("user_id" ) and book in favbooks %}
