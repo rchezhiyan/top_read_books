@@ -20,12 +20,12 @@
     </form>
 
     <h2>Already have an account!</h2>
-    <form action="/login" method="POST">
+    <form id='login' action="/login" method="POST">
         <p>
-            Email <input type="email" name="email">
+            Email <input id= "email" type="email" name="email">
         </p>
         <p>
-            Password <input type="text" name="password">
+            Password <input id="pwd" type="text" name="password">
         </p>
         
         <p>
@@ -35,4 +35,8 @@
     </form>
 
 
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/login.js"></script>
 {% endblock %}

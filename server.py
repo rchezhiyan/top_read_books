@@ -66,19 +66,36 @@ def register_user():
 def process_login():
     """Process user login."""
 
-    email = request.form.get("email")
-    password = request.form.get("password")
+    email = request.json.get("email")
+    password = request.json.get("pwd")
+
+    print(f"EMAIL: {email} PASSWORD: {password}")
 
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("The email or password you entered was incorrect.")
+        msg="error"
     else:
         # Log in user by storing the user's email in session
         session["username"] = user.username
         session["user_id"] = user.id
         flash(f"Welcome back, {user.username}!")
+        msg = 'Success'
 
-    return redirect("/")
+    return msg
+
+@app.route("/login")
+def show_login():
+
+    return render_template('login.html')
+
+@app.route("/logout")
+def handle_logout():
+
+    session.clear()
+
+    return 'Success'
+
 
 @app.route("/add_book")
 def add_book():
