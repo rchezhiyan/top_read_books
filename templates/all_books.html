@@ -7,7 +7,7 @@
   <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for book in books %}
 
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 18rem;"  class="d-flex flex-column">
         <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn13}}-M.jpg"  class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ book.title }}</h5>
@@ -16,7 +16,7 @@
               <p>{{ author.name }}</p>
             {% endfor %}
           </p>
-          <a href="/books/{{ book.id }}" class="btn btn-primary">See Details</a>
+          <a href="/books/{{ book.id }}" class="btn btn-primary align-self-end">See Details</a>
         </div>
       </div>
     {% endfor %}

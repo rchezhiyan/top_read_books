@@ -10,28 +10,34 @@
     <p>Rating: {{ book.gr_avg_rating }}</p>
     <p>No. Of Ratings: {{ book.num_of_ratings }}</p>
     <p>No. Of Reviews: {{ book.num_of_reviews }}</p>
+
+    {% if  not book.authors %}
+        pass
+    {% else %}
     <p>by
-        {% for author in book.authors[:-1]%}
+        {% for author in book.authors[:-1] %}
         <span><a href="https://en.wikipedia.org/wiki/{{ author.name }}">{{ author.name }}</a> /</span>
         {% endfor %}
-        <span><a href="https://en.wikipedia.org/wiki/{{ book.authors[-1].name }}">{{ book.authors[-1].name }}</span>
+        {% if book.authors[-1] %}
+        <span><a href="https://en.wikipedia.org/wiki/{{ book.authors[-1].name }}" target="_blank" rel="noopener noreferrer">{{ book.authors[-1].name }}</a></span>
+        {% endif %}
     </p>
+    {% endif %}
 </p>
 <p>
     {% if session.get("user_id" ) and book in favbooks %}
-        <button class="Rem_Fav_Book"> Remove book from MyList </button>
-        <p>{{book.id}}</p>
+        <button id="fav_book"> Remove book from MyList </button>
     {% elif session.get("user_id" ) %}
-        <button class="Add_Fav_Book"> Add book to MyList </button>
-        <p>{{book.id}}</p>
+        <button id="fav_book"> Add book to MyList </button>
     {% endif %}
 </p>
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/static/js/addFavBook.js"></script>
 <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
 <script type="text/javascript">
 GBS_insertPreviewButtonPopup('ISBN:{{ book.isbn13 }}');
 </script>
-<script type="text/javascript" src="/static/js/addFavBook.js"></script>
+
 {% endblock %}
