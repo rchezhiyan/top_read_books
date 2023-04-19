@@ -10,8 +10,9 @@
     <p>Rating: {{ book.gr_avg_rating }}</p>
     <p>No. Of Ratings: {{ book.num_of_ratings }}</p>
     <p>No. Of Reviews: {{ book.num_of_reviews }}</p>
-    <p>Description: {{ gdata }}</p>
-
+    {% if data %}
+        <p>Description: {{ data }}</p>
+    {% endif %}
     {% if  not book.authors %}
         pass
     {% else %}

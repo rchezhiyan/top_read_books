@@ -105,6 +105,14 @@ def authors_books_report():
 
     return data
 
+def search_books_byname(keyword):
+
+    # SELECT *
+    # FROM books b
+    # WHERE lower(b.title) like ('%keyword%');
+
+    return Book.query.filter(Book.title.like(f'%{keyword}%')).all()
+
 
 
 if __name__ == "__main__":

@@ -37,10 +37,14 @@ def show_book(book_id):
         fav_books = []
 
     gdata = google_book.google_book_data(book.isbn13)
-    data = gdata["items"][0]["volumeInfo"]
+
+    if gdata is None:
+        data = None
+    else:
+        data = gdata["items"][0]["volumeInfo"].get('description')
 
     return render_template("book_details.html", book=book, favbooks=fav_books,
-                            gdata=data['description'])
+                            data=data)
 
 @app.route("/top_books")
 def top_books():
@@ -172,6 +176,24 @@ def get_report_data():
     result = [{k: item[k] for k in item.keys()} for item in data]
     print (result)
     print(jsonify(result))
+    return jsonify(result)
+
+@app.route('/search')
+def show_search():
+
+    return render_template("search.html")
+
+@app.route('/search.json', methods=["POST"])
+def process_search():
+
+    keyword = request.json.get('keyword')
+
+    print(keyword.searchtxt)
+
+    booklist = crud.search_books_byname(keyword)
+    result = [{i: book[i] for i in book.keys()} for book in booklist]
+
+
     return jsonify(result)
 
     
