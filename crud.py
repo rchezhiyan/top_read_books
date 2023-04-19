@@ -51,7 +51,7 @@ def get_user_by_email(email):
 def get_books():
     """Return all books."""
 
-    return Book.query.all()
+    return Book.query.limit(30).all()
 
 def get_book_by_id(book_id):
     """Return a movie by primary key."""

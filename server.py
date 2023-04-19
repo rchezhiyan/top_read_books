@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, db
 import crud
+import google_book
 
 from jinja2 import StrictUndefined
 
@@ -35,7 +36,11 @@ def show_book(book_id):
     else:
         fav_books = []
 
-    return render_template("book_details.html", book=book, favbooks=fav_books)
+    gdata = google_book.google_book_data(book.isbn13)
+    data = gdata["items"][0]["volumeInfo"]
+
+    return render_template("book_details.html", book=book, favbooks=fav_books,
+                            gdata=data['description'])
 
 @app.route("/top_books")
 def top_books():
