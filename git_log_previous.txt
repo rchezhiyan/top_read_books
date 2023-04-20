@@ -1,0 +1,71 @@
+commit e7287b24f606dce058d188714d253e32ee1ad003
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Wed Apr 19 19:27:38 2023 -0400
+
+    FIX URGENT
+
+commit 832242653cfb747d2e25b62d30666a16e93e0f1b
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Wed Apr 19 15:00:26 2023 -0400
+
+    Added google book api fetch and displayed book description in the details page.
+
+commit 880c8afe277502e27c707a6af77162372ff27fe3
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Tue Apr 18 16:09:03 2023 -0400
+
+    Fixed DOM render for favbooks.
+
+commit fc97844d4b54af378f41a3744eb9bb4e89c01f26
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Fri Apr 14 16:59:49 2023 -0400
+
+    Added wiki link for the authors in the book details page
+
+commit 884b24d805df1e02d7854b9a80c31d8b5b5cfbb1
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Fri Apr 14 12:32:22 2023 -0400
+
+    Fixed logout issues, added cards for book display.
+
+commit 2d61f7fffc722410fb06dfac1b99d8357432be03
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Thu Apr 13 20:25:42 2023 -0400
+
+    Modified login and logout with ajax
+
+commit 8387549b05e5b9024ccca5212649a3692f377e2d
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Wed Apr 12 14:58:33 2023 -0400
+
+    Added the d3 bar chart
+
+commit b843adaf147047cb69618264bccacb74a42ab8c5
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Mon Apr 10 16:29:59 2023 -0400
+
+    Finished favbook module and bootstrap added2.
+
+commit cac54979a4f02fcc4a51f96aa50c8908c66f8313
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Mon Apr 10 16:28:45 2023 -0400
+
+    Finished the favbook module and added bootstrap.
+
+commit 69c56f21d6b0f0ee6cc09617cdec486470b57800
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Thu Apr 6 19:43:11 2023 -0400
+
+    Added template and static
+
+commit 63e39e0fd40c33564b4b39a56a10e7a3f89aa494
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Thu Apr 6 19:39:45 2023 -0400
+
+    Added preview and fav_book mod
+
+commit c1a96b7b8f5fb1b217400abdc596f1d1d869215e
+Author: Rajee Chezhiyan <rajeswarichezhiyan01@gmail.com>
+Date:   Wed Apr 5 11:41:09 2023 -0400
+
+    Finished DB related code until seed.py
