@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, flash, session, redirect, jso
 from model import connect_to_db, db
 import crud
 import google_book
+import json
 
 from jinja2 import StrictUndefined
 
@@ -178,6 +179,31 @@ def get_report_data():
     print(jsonify(result))
     return jsonify(result)
 
+@app.route("/bubble_chart")
+def show_bubble_chart():
+
+    return render_template("bubble_chart.html")
+
+@app.route("/bubble_data.json")
+def get_bubble_data():
+    
+    data = crud.bubble_report()
+    # result = [{k: item[k] for k in item.keys()} for item in data]
+
+    result = []
+    for item in data: 
+        res = {}
+        for k in item.keys():
+            if k == 'avg_rating':
+                res[k] = float(item[k])
+            else:
+                res[k] = item[k]
+        result.append(res)
+
+    return jsonify(result)
+
+
+
 @app.route('/search')
 def show_search():
 
@@ -186,15 +212,15 @@ def show_search():
 @app.route('/search.json', methods=["POST"])
 def process_search():
 
-    keyword = request.json.get('keyword')
+    keyword = request.json.get("searchtxt")
 
-    print(keyword.searchtxt)
+    print(keyword)
 
     booklist = crud.search_books_byname(keyword)
-    result = [{i: book[i] for i in book.keys()} for book in booklist]
 
+    print(booklist)
 
-    return jsonify(result)
+    return json.dumps(booklist)
 
     
 

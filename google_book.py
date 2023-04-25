@@ -16,6 +16,8 @@ def google_book_data(isbn13):
     res = requests.get(url)
     data = res.json()
 
+    print(data)
+
     if data["totalItems"] == 0:
         return None
 
