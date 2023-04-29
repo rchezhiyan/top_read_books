@@ -4,14 +4,13 @@
 {% block body %}
   <h1>All Books</h1>
 
-  <ul>
+  <ol>
     {% for book in books %}
       <li>
         <a href="/books/{{ book[0].id }}">
-            RANK: {{ book[1] }}
             <span>{{ book[0].title }} </span>
         </a>
       </li>
     {% endfor %}
-  </ul>
+  </ol>
 {% endblock %}

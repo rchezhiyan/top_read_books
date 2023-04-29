@@ -1,9 +1,9 @@
 'use strict';
 
 // set the dimensions and margins of the graph
-var margin = {top: 40, right: 150, bottom: 60, left: 30},
-width = 500 - margin.left - margin.right,
-height = 420 - margin.top - margin.bottom;
+var margin = {top: 40, right: 150, bottom: 60, left: 100},
+width = 760 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#bubble-chart-container")
@@ -27,9 +27,7 @@ fetch('/bubble_data.json')
 
         // Add X axis
         var x = d3.scaleLinear()
-        .domain([d3.min(data, function (d) {
-            return d.num_of_ratings;
-        }), d3.max(data, function (d) {
+        .domain([1000, d3.max(data, function (d) {
                 return d.num_of_ratings;
         })])
         .range([ 0, width ]);
@@ -65,13 +63,12 @@ fetch('/bubble_data.json')
 
         // Add a scale for bubble size
         var z = d3.scaleLinear()
-        //.domain([200000, 1310000000])
         .domain([d3.min(data, function (d) {
             return d.book_count;
         }), d3.max(data, function (d) {
             return d.book_count;
         })])
-        .range([ 2, 20]);
+        .range([ 2, 50]);
 
         // Add a scale for bubble color
         var myColor = d3.scaleOrdinal()

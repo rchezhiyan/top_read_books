@@ -7,9 +7,9 @@ fetch('/author_books.json')
         const data = responseJson
         console.log(data)
 
-        const margin = {top: 20, right:30, bottom:40, left:90}
-        const width = 460 - margin.left - margin.right
-        const height = 400 - margin.top -margin.bottom
+        const margin = {top: 20, right:100, bottom:40, left:200}
+        const width = 760 - margin.left - margin.right
+        const height = 500 - margin.top -margin.bottom
 
         const svg = d3.select('#bar-chart')
             .append("svg")
@@ -20,7 +20,11 @@ fetch('/author_books.json')
                     "translate(" + margin.left + "," + margin.top + ")");
         
         const x = d3.scaleLinear()
-            .domain([0, 40])
+            .domain([d3.min(data, function (d) {
+            return d.bookcount;
+            }), d3.max(data, function (d) {
+            return d.bookcount;
+            })])
             .range([0, width]);
 
         svg.append("g")
@@ -46,7 +50,7 @@ fetch('/author_books.json')
           .append('rect')
             .attr('x', 0)
             .attr('y', function(d) { return y(d.name)} )
-            .attr('width', function(d){return d.bookcount * 40 })
-            .attr('height', y.bandwidth())
+            .attr('width', function(d){return d.bookcount*5})
+            .attr('height', y.bandwidth()/2)
             .attr('fill', function(d,idx) { return d3.hsl(idx * 30, 1.0, 0.8)})
     });

@@ -3,36 +3,51 @@
 {% block title%}{{ book.title }} - Details{% endblock %}
 
 {% block body %}
-<h4>{{ book.title}}</h4>
 
-<img src="https://covers.openlibrary.org/b/isbn/{{book.isbn13}}-L.jpg" />
-<p>
-    <p>Rating: {{ book.gr_avg_rating }}</p>
-    <p>No. Of Ratings: {{ book.num_of_ratings }}</p>
-    <p>No. Of Reviews: {{ book.num_of_reviews }}</p>
-    {% if data %}
-        <p>Description: {{ data }}</p>
-    {% endif %}
-    {% if  not book.authors %}
-        pass
-    {% else %}
-    <p>by
-        {% for author in book.authors[:-1] %}
-        <span><a href="https://en.wikipedia.org/wiki/{{ author.name }}">{{ author.name }}</a> /</span>
-        {% endfor %}
-        {% if book.authors[-1] %}
-        <span><a href="https://en.wikipedia.org/wiki/{{ book.authors[-1].name }}" target="_blank" rel="noopener noreferrer">{{ book.authors[-1].name }}</a></span>
-        {% endif %}
-    </p>
-    {% endif %}
-</p>
-<p>
-    {% if session.get("user_id" ) and book in favbooks %}
-        <button id="fav_book"> Remove book from MyList </button>
-    {% elif session.get("user_id" ) %}
-        <button id="fav_book"> Add book to MyList </button>
-    {% endif %}
-</p>
+<div class="container">
+    
+    <div class="row mt-5">
+        <div class="col-3">
+            <img src="https://covers.openlibrary.org/b/isbn/{{book.isbn13}}-L.jpg" />
+        </div>
+        <div class="col-9 p-5">
+            <h3>Title: {{ book.title}}</h3>
+            <p>Rating: {{ book.gr_avg_rating }}</p>
+            <p>No. Of Ratings: {{ book.num_of_ratings }}</p>
+            <p>No. Of Reviews: {{ book.num_of_reviews }}</p>
+            {% if data %}
+                <p>Description: {{ data }}</p>
+            {% endif %}
+            {% if  not book.authors %}
+                pass
+            {% else %}
+            <p>
+                by
+                {% for author in book.authors[:-1] %}
+                <span><a href="https://en.wikipedia.org/wiki/{{ author.name }}"target="_blank" rel="noopener noreferrer">{{ author.name }}</a> /</span>
+                {% endfor %}
+                {% if book.authors[-1] %}
+                <span><a href="https://en.wikipedia.org/wiki/{{ book.authors[-1].name }}" target="_blank" rel="noopener noreferrer">{{ book.authors[-1].name }}</a></span>
+                {% endif %}
+            
+            {% endif %}
+            </p>
+            <p>
+
+            {% if session.get("user_id" ) and book in favbooks %}
+            <button id="fav_book"> Remove book from MyList </button>
+            {% elif session.get("user_id" ) %}
+            <button id="fav_book"> Add book to MyList </button>
+            {% endif %}
+            </p>
+
+            
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
 

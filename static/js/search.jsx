@@ -2,13 +2,13 @@ function Book(props) {
     console.log(props)
     console.log(props.book.id)
     return (
-            <div className="card d-flex flex-column"  width="50">
+            <div className="card 50 m-4" style={{width: '18rem'}}>
                 <img src={`https://covers.openlibrary.org/b/isbn/${props.book.isbn13}-M.jpg`} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h6 className="card-title">{props.book.title}</h6>
                 </div>
                 <div className="card-footer">
-                    <a href={`/books/${props.book.id}`} class="btn btn-primary">See Details</a>
+                    <a href={`/books/${props.book.id}`} className="btn btn-primary">See Details</a>
                 </div>
             </div>
 
@@ -63,20 +63,28 @@ function Search() {
 
     return (
     <div>
-        <form onSubmit={handleSearch}>
-        <label>Search Text:
+        <form  id="search" onSubmit={handleSearch}>
+        <label>
             <input
                 type="text"
                 value={searchtxt}
+                placeholder = "search here"
                 onChange={(evt) => setSearchtxt(
                     evt.target.value
                 )}
             />
         </label>
-        <input type="submit" value="Search"/>
-        </form>  
+        {/* <input type="submit" value="Search"/> */}
+        <button type="submit">
+        <i className="bi bi-search"></i>
+        </button>
+        </form> 
+
+        <div className="container-fluid">
+            <BookList books={booklist}/>
+        </div> 
             
-        <BookList books={booklist}/>
+        
 
 
     </div>

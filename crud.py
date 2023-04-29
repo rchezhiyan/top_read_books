@@ -51,7 +51,7 @@ def get_user_by_email(email):
 def get_books():
     """Return all books."""
 
-    return Book.query.limit(30).all()
+    return Book.query.order_by( Book.num_of_ratings.desc(),Book.gr_avg_rating.desc()).limit(100).all()
 
 def get_book_by_id(book_id):
     """Return a movie by primary key."""
@@ -77,8 +77,8 @@ def get_top_books():
 
     top_books = db.session.query(
     Book,
-    func.rank().over(
-        order_by=(Book.gr_avg_rating.desc(), Book.num_of_ratings.desc())
+    func.dense_rank().over(
+        order_by=(Book.num_of_ratings.desc(),Book.gr_avg_rating.desc())
     ).label('book_rank')).limit(10).all()
 
     return top_books
@@ -102,12 +102,7 @@ def authors_books_report():
     # GROUP BY 1
     # ORDER BY 2;
 
-    # bubble chart report:
-    # SELECT a.name, count(b.id), round(avg(gr_avg_rating),2) as avg_rating, round(avg(num_of_ratings),0) as avg_ratings
-    # from books b
-    # JOIN book_authors ba ON ba.book_id = b.id
-    # JOIN authors a ON a.id = ba.author_id
-    # GROUP BY 1;
+
 
     data = db.session.query(Author.name
                 ,func.count(BookAuthor.book_id).label('bookcount')).join(BookAuthor).group_by('name').order_by(desc('bookcount')).limit(10).all()
@@ -116,14 +111,27 @@ def authors_books_report():
 
 def bubble_report():
 
-    # stmt = select(User).join(User.orders).join(Order.items).join(User.addresses)
+    # bubble chart report:
+    # SELECT a.name, count(b.id), round(avg(gr_avg_rating),2) as avg_rating, round(avg(num_of_ratings),0) as avg_ratings
+    # from books b
+    # JOIN book_authors ba ON ba.book_id = b.id
+    # JOIN authors a ON a.id = ba.author_id
+    # GROUP BY 1
+    # having round(avg(num_of_ratings),0) > 10000
+    # ORDER BY 4 DESC,3 DESC;
 
     data = db.session.query(Author.name
                 ,func.count(BookAuthor.book_id).label('book_count')
                 ,cast(func.round(func.avg(Book.gr_avg_rating),2), Numeric).label('avg_rating')
-                ,cast(func.round(func.avg(Book.num_of_ratings),0), Integer).label('num_of_ratings')).join(BookAuthor, BookAuthor.author_id == Author.id).join(Book, Book.id == BookAuthor.book_id).group_by('name').order_by(desc('num_of_ratings')).all()
+                ,cast(func.round(func.avg(Book.num_of_ratings),0), Integer).label('num_of_ratings')).\
+                join(BookAuthor, BookAuthor.author_id == Author.id).\
+                join(Book, Book.id == BookAuthor.book_id).\
+                group_by('name').\
+                having((cast(func.round(func.avg(Book.num_of_ratings),0), Integer).between(100000 , 300000))
+                & (func.avg(Book.gr_avg_rating) > 3.5)).\
+                order_by(desc('num_of_ratings')).all()
     
-
+    print(data)
     return data
 
 def to_dict(objlist):
@@ -143,6 +151,8 @@ def search_books_byname(keyword):
     # SELECT *
     # FROM books b
     # WHERE lower(b.title) like ('%keyword%');
+
+    keyword = keyword.lower()
 
     booklist = Book.query.filter(func.lower(Book.title).like(f'%{keyword}%')).all()
 

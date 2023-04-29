@@ -14,7 +14,7 @@ class Book(db.Model):
     __tablename__ = "books"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, unique=True)
+    title = db.Column(db.String)
     isbn13 = db.Column(db.String(17), unique=True)
     num_pages = db.Column(db.Integer, nullable=True)
     book_cover = db.Column(db.String)
@@ -78,7 +78,7 @@ class UserBooks(db.Model):
     fav_book_id = db.Column(db.Integer, db.ForeignKey("books.id"))
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///books", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///books_demo", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
