@@ -2,14 +2,14 @@ function Book(props) {
     console.log(props)
     console.log(props.book.id)
     return (
-            <div className="card 50 m-4" style={{width: '18rem'}}>
-                <img src={`https://covers.openlibrary.org/b/isbn/${props.book.isbn13}-M.jpg`} className="card-img-top" alt="..."/>
+            <div className="card 50 m-4 border-0 d-flex flex-column" style={{width: '18rem'}}>
+                <a href={`/books/${props.book.id}`} ><img className="book card-img-top" src={`https://covers.openlibrary.org/b/isbn/${props.book.isbn13}-M.jpg`} alt="..."/></a>
                 <div className="card-body">
                     <h6 className="card-title">{props.book.title}</h6>
                 </div>
-                <div className="card-footer">
+                {/* <div className="card-footer">
                     <a href={`/books/${props.book.id}`} className="btn btn-primary">See Details</a>
-                </div>
+                </div> */}
             </div>
 
     )

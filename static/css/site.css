@@ -1,7 +1,7 @@
 body {
     background-size: cover;
     font-family: sans-serif;
-    color: rgb(6, 23, 23);
+    color: black;
   }
   
 #site-nav ul {
@@ -37,4 +37,13 @@ body {
   float: inherit;
   width:  200px;
   height: 300px;
+}
+/* .Googlebutton {
+  position: relative;
+} */
+
+#__GBS_Button0 {
+  position: relative;
+  left: 50%;
+  /* right : 50%; */
 }

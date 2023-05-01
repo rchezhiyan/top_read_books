@@ -131,7 +131,6 @@ def bubble_report():
                 & (func.avg(Book.gr_avg_rating) > 3.5)).\
                 order_by(desc('num_of_ratings')).all()
     
-    print(data)
     return data
 
 def to_dict(objlist):
