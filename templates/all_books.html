@@ -4,13 +4,13 @@
 {% block body %}
   <h3>All Books</h3>
 
-  <div className="container-fluid">
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
       {% for book in books %}
   
         <div class="card 50 m-4 border-0" style="width: 18rem;"  class="d-flex flex-column">
           <a href="/books/{{ book.id }}"><img class="book" src="https://covers.openlibrary.org/b/isbn/{{book.isbn13}}-M.jpg"  class="card-img-top" alt="..."></a>
-          <div class="card-body">
+          <div class="card-body p-0">
             <h6 class="card-title">{{ book.title }}</h6>
             <p class="card-text"> Authors: 
               {% for author in  book.authors %}

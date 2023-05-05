@@ -1,7 +1,13 @@
 body {
     background-size: cover;
+    /* background-image: url("/static/img/lib.jpg"); */
     font-family: sans-serif;
     color: black;
+  }
+
+  .home {
+    background-image: url("/static/img/lib.jpg");
+    height: 400px;
   }
   
 #site-nav ul {
@@ -20,6 +26,26 @@ body {
   margin: 0 auto;
 }
 
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h6 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+
 .bi{
   width: 1em;
 }
@@ -34,13 +60,18 @@ body {
 }
 
 .book {
-  float: inherit;
-  width:  200px;
-  height: 300px;
+  float: none;
+  justify-content: center;
+  width:  235px;
+  height: 350px;
+  margin: 0 auto;
 }
-/* .Googlebutton {
-  position: relative;
-} */
+
+.card {
+  justify-content: center;
+  margin: 0 auto;
+  float: none
+}
 
 #__GBS_Button0 {
   position: relative;

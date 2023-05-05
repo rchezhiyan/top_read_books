@@ -2,7 +2,7 @@ function Book(props) {
     console.log(props)
     console.log(props.book.id)
     return (
-            <div className="card 50 m-4 border-0 d-flex flex-column" style={{width: '18rem'}}>
+            <div className="card 50 m-4 border-0 d-flex flex-column justify-content-md-center" style={{width: '18rem'}}>
                 <a href={`/books/${props.book.id}`} ><img className="book card-img-top" src={`https://covers.openlibrary.org/b/isbn/${props.book.isbn13}-M.jpg`} alt="..."/></a>
                 <div className="card-body">
                     <h6 className="card-title">{props.book.title}</h6>
@@ -31,7 +31,7 @@ const BookList = (props) => {
         );
     }
 
-    return <div className="row row-cols-1 row-cols-md-2 g-4">{bookitems}</div>;
+    return <div className="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">{bookitems}</div>;
 
 }
 
@@ -43,7 +43,6 @@ function Search() {
 
     const handleSearch = (evt) => {
         evt.preventDefault();
-        alert(`search text : ${searchtxt}`)
 
         fetch('/search.json', {
             method: 'POST',

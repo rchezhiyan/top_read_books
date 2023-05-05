@@ -214,11 +214,7 @@ def process_search():
 
     keyword = request.json.get("searchtxt")
 
-    print(keyword)
-
     booklist = crud.search_books_byname(keyword)
-
-    print(booklist)
 
     return json.dumps(booklist)
 
