@@ -3,29 +3,32 @@
 
 {% block body %}
 
-    <h2>Register an account</h2>
+<div class="container  justify-content-sm-center">
+
+    <h3>Register an account</h3>
+    
     <form action="/users" method="POST">
         <p>
-            Username <input type="text" name="username">
+             <input type="text" placeholder="Username"name="username">
         </p>
         <p>
-            Email <input type="email" name="email">
+            <input type="email" placeholder="Email"name="email">
         </p>
         <p>
-            Password <input type="password" name="password">
+            <input type="password" placeholder="Password" name="password">
         </p>
         <p>
             <input type="submit">
         </p>
     </form>
 
-    <h2>Already have an account!</h2>
+    <h3>Already have an account!</h3>
     <form id='login' action="/login" method="POST">
         <p>
-            Email <input id= "email" type="email" name="email">
+            <input id= "email" placeholder="Email" type="email" name="email">
         </p>
         <p>
-            Password <input id="pwd" type="password" name="password">
+            <input id="pwd" type="password" placeholder="Password" name="password">
         </p>
         
         <p>
@@ -33,6 +36,8 @@
         </p>
 
     </form>
+
+</div>
 
 
 {% endblock %}

@@ -29,7 +29,6 @@ loginForm.addEventListener('submit', (evt) => {
             console.log(respText)
             if (respText == 'Success') {
                     handleLogin.innerText = 'Log Out';
-                    alert('You have Logged In!');
                     document.location.href = "/fav_books";
                   }
 

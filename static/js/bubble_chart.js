@@ -87,7 +87,7 @@ fetch('/bubble_data.json')
         .style("opacity", 0)
         .attr("class", "tooltip")
         .style("background-color", "black")
-        .style("border-radius", "5px")
+        .style("border-radius", "20px")
         .style("padding", "10px")
         .style("color", "white")
 
@@ -99,13 +99,13 @@ fetch('/bubble_data.json')
         tooltip
         .style("opacity", 1)
         .html("Author: " + d.name)
-        .style("left", (d3.mouse(this)[0]+30) + "px")
-        .style("top", (d3.mouse(this)[1]+30) + "px")
+        .style("left", (d3.mouse(this)[0]+250) + "px")
+        .style("top", (d3.mouse(this)[1]+150) + "px")
         }
         var moveTooltip = function(d) {
         tooltip
-        .style("left", (d3.mouse(this)[0]+30) + "px")
-        .style("top", (d3.mouse(this)[1]+30) + "px")
+        .style("left", (d3.mouse(this)[0]+250) + "px")
+        .style("top", (d3.mouse(this)[1]+150) + "px")
         }
         var hideTooltip = function(d) {
         tooltip
